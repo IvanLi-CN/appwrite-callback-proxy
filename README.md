@@ -79,3 +79,21 @@ curl 'https://app.appwrite.io/v1/webhook-proxy/my-first-project/hello-world-func
   -H 'content-type: application/json' \
   --data-raw '{"domain":"example.com"}'
 ```
+
+Appwrite function will receive following `req.payload`:
+
+```json
+{
+  "method": "POST",
+  "body": { /* json or string */ },
+  "params": { /* query params object */ },
+  "headers": {
+    /* ... */
+  }
+}
+
+```
+
+## License
+
+[MIT](https://raw.githubusercontent.com/IvanLi-CN/appwrite-callback-proxy/master/LICENSE).
