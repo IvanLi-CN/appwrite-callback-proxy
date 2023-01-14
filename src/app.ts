@@ -1,4 +1,4 @@
-import { httpServer, sdk } from "./deps.ts";
+import { sdk } from "./deps.ts";
 
 const patternText =
   Deno.env.get("CALLBACK_PROXY_FOR_APPWRITE_FUNCTIONS_URL_PATTERN") ??
@@ -7,7 +7,7 @@ const pattern = new URLPattern({
   pathname: patternText,
 });
 
-async function handler(req: Request): Promise<Response> {
+export async function handler(req: Request): Promise<Response> {
   const url = new URL(req.url);
   const match = pattern.exec(url);
   if (!match) {
@@ -85,6 +85,4 @@ async function handler(req: Request): Promise<Response> {
     status: execution.statusCode,
   });
 }
-httpServer.serve(handler, {
-  port: +(Deno.env.get('CALLBACK_PROXY_FOR_APPWRITE_FUNCTIONS_URL_PORT') || '4444'),
-});
+
